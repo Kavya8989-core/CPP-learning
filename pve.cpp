@@ -114,19 +114,19 @@ using namespace std;
             string wep;
             cin>>wep;
             if(wep=="Katana" || wep=="Axe" || wep=="Hammer" || wep=="Spear"){
-                            if(wep=="Katana" &&coins.getcoin()==50){
+                            if(wep=="Katana" &&coins.getcoin()>=50){
                 weapon.changeWeapon("Katana",50);
                 coins.spendCoins(50);
             }
-            else if(wep=="Axe" && coins.getcoin()==70){
+            else if(wep=="Axe" && coins.getcoin()>=70){
                 weapon.changeWeapon("Axe",70);
                 coins.spendCoins(70);
             }
-            else if(wep=="Hammer" && coins.getcoin()==100){
+            else if(wep=="Hammer" && coins.getcoin()>=100){
                 weapon.changeWeapon("Hammer",100);
                 coins.spendCoins(100);
             }
-            else if(wep=="Spear" && coins.getcoin()==120){
+            else if(wep=="Spear" && coins.getcoin()>=120){
                 weapon.changeWeapon("Spear",120);
                 coins.spendCoins(120);
             }
@@ -137,6 +137,7 @@ using namespace std;
         else{
             cout<<"Enter valid choice!"<<endl;
         }
+        cout<<"You've bought a "<<weapon.getWeapons()<<endl;
             }
 
         void attack(Character &enemy) {
@@ -144,8 +145,21 @@ using namespace std;
                 cout<<name<<" slashes with knife!"<<endl;
                 enemy.damage(20);
             }
-            else{
-                cout<<name<<"swings the sword"<<endl;
+            else if(weapon.getWeapons()=="Katana"){
+                cout<<name<<" swings the Katana"<<endl;
+                enemy.damage(50);
+            }
+            else if(weapon.getWeapons()=="Axe"){
+                cout<<name<<" sliced with axe"<<endl;
+                enemy.damage(50);
+            }
+            else if(weapon.getWeapons()=="Hammer"){
+                cout<<name<<" smash the hammer"<<endl;
+                enemy.damage(100);
+            }
+            else if(weapon.getWeapons()=="Spear"){
+                cout<<name<<" hits with spear"<<endl;
+                enemy.damage(120);
             }
         }
 
@@ -160,6 +174,7 @@ using namespace std;
         }
         void increasePotions(){
             potions=potions+1;
+            cout<<"+1 potion added"<<endl;
         }
         void showStats(){
             cout<<name<<endl;
@@ -179,7 +194,33 @@ using namespace std;
             enemy.damage(20);
             }
             else{
-                
+                cout<<"Goblin is died!"<<endl;
+            }
+        }
+        void showStates(){
+            cout<<name<<endl;
+            cout<<health<<endl;
+            if(health<=0){
+                coin.increaseCoin();
+                player.increasePotions();
+            }
+        }
+       
+    };
+    class Dragon:public Character{
+        Coins coin;
+        Player player;
+        public:
+        Dragon(string n,int h):Character(n,h),player(n,h){
+
+        }
+        void attack(Character &enemy){
+            if(health>0){
+            cout<<"Throws flame"<<endl;
+            enemy.damage(35);
+            }
+            else{
+                cout<<"Dragon is died!"<<endl;
             }
         }
         void showStates(){
@@ -196,9 +237,11 @@ using namespace std;
         Player p("Leon",100);
         Goblin g("goblin",50);
         string decision;
-        cout<<"Do you want to attack or visit store: ";
+        cout<<"Do you want to visit store: ";
         cin>>decision;
-        if(decision=="attack"){
+        if(decision=="Yes"){
+            p.store();
+        }
             while(p.isAlive()&&g.isAlive()){
                 int choice;
                 cout<<"1.Attack"<<endl;
@@ -222,13 +265,43 @@ using namespace std;
                 default:
                 cout<<"Invalid choice!"<<endl;
                     break;
-                }
             }
             
         }
-        else if(decision=="store"){
+        cout<<"Level cleared!"<<endl;
+        Dragon d("dragon",80);
+        cout<<"Do you want to visit store: ";
+        cin>>decision;
+        if(decision=="Yes"){
             p.store();
         }
+            while(p.isAlive()&&d.isAlive()){
+                int choice;
+                cout<<"1.Attack"<<endl;
+                cout<<"2.Use potion"<<endl;
+                cin>>choice;
+                switch (choice)
+                {
+                case 1:
+                    p.attack(g);
+                    d.showStates();
+                    d.attack(p);
+                    p.showStats();
+                    break;
+                
+                    case 2:
+                    p.usePotions();
+                    p.showStats();
+                    break;
+
+                
+                default:
+                cout<<"Invalid choice!"<<endl;
+                    break;
+            }
+            
+        }
+
         return 0;
     }
 
