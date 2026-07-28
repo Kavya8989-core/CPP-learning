@@ -67,7 +67,7 @@ using namespace std;
         int coins;
         public:
         Coins(){
-            coins=500;
+            coins=0;
         }
         int getcoin(){
             return coins;
@@ -78,6 +78,7 @@ using namespace std;
         void increaseCoin(){
             coins=coins+100;
             cout<<"+100 coins added!"<<endl;
+            cout<<coins<<endl;
         }
         void viewCoins(){
             cout<<coins<<endl;
@@ -161,6 +162,11 @@ using namespace std;
                 cout<<name<<" hits with spear"<<endl;
                 enemy.damage(120);
             }
+            if(!enemy.isAlive()){
+                coins.increaseCoin();
+                potions=potions+1;
+            }
+            
         }
 
         void usePotions(){
@@ -182,7 +188,7 @@ using namespace std;
         }
     };
     class Goblin:public Character{
-        Coins coin;
+        Coins coins;
         Player player;
         public:
         Goblin(string n,int h):Character(n,h),player(n,h){
@@ -200,10 +206,6 @@ using namespace std;
         void showStates(){
             cout<<name<<endl;
             cout<<health<<endl;
-            if(health<=0){
-                coin.increaseCoin();
-                player.increasePotions();
-            }
         }
        
     };
@@ -221,6 +223,33 @@ using namespace std;
             }
             else{
                 cout<<"Dragon is died!"<<endl;
+            }
+        }
+        void showStates(){
+            cout<<name<<endl;
+            cout<<health<<endl;
+            if(health<=0){
+                cout<<"Total coins:- ";
+                coin.increaseCoin();
+                player.increasePotions();
+            }
+        }
+       
+    };
+    class Beast:public Character{
+        Coins coin;
+        Player player;
+        public:
+        Beast(string n,int h):Character(n,h),player(n,h){
+
+        }
+        void attack(Character &enemy){
+            if(health>0){
+            cout<<"Smash hard"<<endl;
+            enemy.damage(50);
+            }
+            else{
+                cout<<"Beast is died!"<<endl;
             }
         }
         void showStates(){
@@ -286,6 +315,39 @@ using namespace std;
                     p.attack(g);
                     d.showStates();
                     d.attack(p);
+                    p.showStats();
+                    break;
+                
+                    case 2:
+                    p.usePotions();
+                    p.showStats();
+                    break;
+
+                
+                default:
+                cout<<"Invalid choice!"<<endl;
+                    break;
+            }
+            
+        }
+        Beast b("Beast",200);
+        cout<<"Level cleared!"<<endl;
+        cout<<"Do you want to visit store: ";
+        cin>>decision;
+        if(decision=="Yes"){
+            p.store();
+        }
+            while(p.isAlive()&&b.isAlive()){
+                int choice;
+                cout<<"1.Attack"<<endl;
+                cout<<"2.Use potion"<<endl;
+                cin>>choice;
+                switch (choice)
+                {
+                case 1:
+                    p.attack(b);
+                    b.showStates();
+                    b.attack(p);
                     p.showStats();
                     break;
                 
