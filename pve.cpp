@@ -78,7 +78,6 @@ using namespace std;
         void increaseCoin(){
             coins=coins+100;
             cout<<"+100 coins added!"<<endl;
-            cout<<coins<<endl;
         }
         void viewCoins(){
             cout<<coins<<endl;
@@ -183,8 +182,8 @@ using namespace std;
             cout<<"+1 potion added"<<endl;
         }
         void showStats(){
-            cout<<name<<endl;
-            cout<<health<<endl;
+            cout<<"Name:- "<<name<<endl;
+            cout<<"Health:-"<<health<<endl;
         }
     };
     class Goblin:public Character{
@@ -204,16 +203,14 @@ using namespace std;
             }
         }
         void showStates(){
-            cout<<name<<endl;
-            cout<<health<<endl;
+            cout<<"Name:- "<<name<<endl;
+            cout<<"Health:- "<<health<<endl;
         }
        
     };
     class Dragon:public Character{
-        Coins coin;
-        Player player;
         public:
-        Dragon(string n,int h):Character(n,h),player(n,h){
+        Dragon(string n,int h):Character(n,h){
 
         }
         void attack(Character &enemy){
@@ -226,13 +223,8 @@ using namespace std;
             }
         }
         void showStates(){
-            cout<<name<<endl;
-            cout<<health<<endl;
-            if(health<=0){
-                cout<<"Total coins:- ";
-                coin.increaseCoin();
-                player.increasePotions();
-            }
+            cout<<"Name:- "<<name<<endl;
+            cout<<"Health:- "<<health<<endl;
         }
        
     };
@@ -253,8 +245,8 @@ using namespace std;
             }
         }
         void showStates(){
-            cout<<name<<endl;
-            cout<<health<<endl;
+            cout<<"Name:- "<<name<<endl;
+            cout<<"Health:- "<<health<<endl;
             if(health<=0){
                 coin.increaseCoin();
                 player.increasePotions();
@@ -297,6 +289,10 @@ using namespace std;
             }
             
         }
+        if (!p.isAlive()){
+            cout<<"Game over"<<endl;
+            return 0;
+        }
         cout<<"Level cleared!"<<endl;
         Dragon d("dragon",80);
         cout<<"Do you want to visit store: ";
@@ -312,7 +308,7 @@ using namespace std;
                 switch (choice)
                 {
                 case 1:
-                    p.attack(g);
+                    p.attack(d);
                     d.showStates();
                     d.attack(p);
                     p.showStats();
@@ -329,6 +325,10 @@ using namespace std;
                     break;
             }
             
+        }
+        if (!p.isAlive()){
+            cout<<"Game over"<<endl;
+            return 0;
         }
         Beast b("Beast",200);
         cout<<"Level cleared!"<<endl;
@@ -362,6 +362,12 @@ using namespace std;
                     break;
             }
             
+        }
+        if(!b.isAlive() && !g.isAlive() && !d.isAlive()){
+            cout<<"The battle is overe leon won!!"<<endl;
+        }
+        else if(!p.isAlive()){
+            cout<<"Game over1"<<endl;
         }
 
         return 0;
