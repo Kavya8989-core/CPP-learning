@@ -26,39 +26,63 @@
 //         return 0;
 //     }
 
+// #include <iostream>
+// #include <fstream>
+// using namespace std;
+//     int main(){
+//     ofstream file("Info.txt");
+//     file<<"Leon"<<endl;
+//     file<<100<<endl;
+//     file<<450<<endl;
+//     file<<"Katana"<<endl;
+//     file<<3<<endl;
+//     file<<5<<endl;
+//     file.close();
+
+//     ifstream read("Info.txt");
+//      if(!read){
+//     cout<<"No such file found!"<<endl;
+
+// return 0;
+//      }
+//     string name,weapon;
+//     int health,coins,potions,level;
+//     read>>name;
+//     read>>health;
+//     read>>coins;
+//     read>>weapon;
+//     read>>potions;
+//     read>>level;
+//     read.close();
+//     cout<<"Name:- "<<name<<endl;
+//     cout<<"health:- "<<health<<endl;
+//     cout<<"coins:- "<<coins<<endl;
+//     cout<<"weapon:- "<<weapon<<endl;
+//     cout<<"potions:- "<<potions<<endl;
+//     cout<<"level:- "<<level<<endl;
+//     return 0;
+// }
+
 #include <iostream>
 #include <fstream>
 using namespace std;
-    int main(){
-    ofstream file("Info.txt");
-    file<<"Leon"<<endl;
-    file<<100<<endl;
-    file<<450<<endl;
-    file<<"Katana"<<endl;
-    file<<3<<endl;
-    file<<5<<endl;
-    file.close();
+int main(){
+    ofstream Data("bank.txt");
+    Data<<"ABC"<<endl;
+    Data<<1000<<endl;
+    Data<<2<<endl;
+    Data.close();
 
-    ifstream read("Info.txt");
-     if(!read){
-    cout<<"No such file found!"<<endl;
-
-return 0;
-     }
-    string name,weapon;
-    int health,coins,potions,level;
-    read>>name;
-    read>>health;
-    read>>coins;
-    read>>weapon;
-    read>>potions;
-    read>>level;
+    ifstream read("Bank.txt");
+    string accountHolder;
+    int years , amt;
+    read>>accountHolder;
+    read >>amt;
+    read >>years;
     read.close();
-    cout<<"Name:- "<<name<<endl;
-    cout<<"health:- "<<health<<endl;
-    cout<<"coins:- "<<coins<<endl;
-    cout<<"weapon:- "<<weapon<<endl;
-    cout<<"potions:- "<<potions<<endl;
-    cout<<"level:- "<<level<<endl;
+
+    cout<<"ACcount holder:- "<<accountHolder<<endl;
+    cout<<"Amount:- "<<amt<<endl;
+    cout<<"Years:- "<<endl;
     return 0;
 }
