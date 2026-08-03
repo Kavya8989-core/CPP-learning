@@ -19,16 +19,16 @@
 using namespace std;
     int main(){
         vector <string> inventory;
+        int choice=0;
+        string item;
+        while (choice!=5)
+        {  
         cout<<"Inventory system"<<endl;
         cout<<"1. Add item"<<endl;
         cout<<"2. Remove last item"<<endl;
         cout<<"3. Show Inventory"<<endl;
         cout<<"4. Clear Iventory"<<endl;
         cout<<"5. Exit"<<endl;
-        int choice=0;
-        string item;
-        while (choice!=5)
-        {  
         cout<<"Enter your choice"<<endl;
         cin>>choice;
         switch (choice)
@@ -53,21 +53,23 @@ using namespace std;
         else{
             cout<<"Enter a valid desicion"<<endl;
         }
-    }
-    else{
-        cout<<"Your inventory is empty!"<<endl;
-    }
-    case 3:
-    if(inventory.size()>0){
-        int i;
-        for(int i;i<inventory.size();i++){
-            cout<<i+1<<" "<<inventory[i]<<endl;
+        }
+        else{
+            cout<<"Your inventory is empty!"<<endl;
+        }
+        break;
+        case 3:
+        if(inventory.size()>0){
+             for(int i=0;i<inventory.size();i++){
+                cout<<i+1<<" "<<inventory[i]<<endl;
         }
     }
     else{
         cout<<"Your inventory is empty!"<<endl;
     }
+    break;
         default:
+        cout<<"Please enter a valid choice!"<<endl;
             break;
         }
     }
