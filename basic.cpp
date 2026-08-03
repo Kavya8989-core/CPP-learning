@@ -2555,15 +2555,15 @@
 //             cout<<"Warrior attacks!"<<endl;
 //             enemy.takeDamage(20);
 //         }
-//         void usePotions(){
-//             if(potions>0){
-//                 heal(20);
-//                 potions=potions-1;
-//             }
-//             else{
-//                 cout<<"No potions left"<<endl;
-//             }
-//         }
+        // void usePotions(){
+        //     if(potions>0){
+        //         heal(20);
+        //         potions=potions-1;
+        //     }
+        //     else{
+        //         cout<<"No potions left"<<endl;
+        //     }
+        // }
 //     };
 
 //     class Boss:public Character{
@@ -3044,7 +3044,4 @@
 //                 d.attack();
 //                 d.heal();
 //         }
-
-
-
 

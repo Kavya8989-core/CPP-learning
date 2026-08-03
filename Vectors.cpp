@@ -25,10 +25,12 @@ using namespace std;
         cout<<"3. Show Inventory"<<endl;
         cout<<"4. Clear Iventory"<<endl;
         cout<<"5. Exit"<<endl;
-        int choice;
+        int choice=0;
+        string item;
+        while (choice!=5)
+        {  
         cout<<"Enter your choice"<<endl;
         cin>>choice;
-        string item;
         switch (choice)
         {
         case 1:
@@ -40,12 +42,12 @@ using namespace std;
         case 2:
         if(inventory.size()>0){
         char decision;
-        cout<<"Do you want to remove the last item (Y/N)";
+        cout<<"Do you want to remove the last item (Y/N):- ";
         cin>>decision;
-        if(decision='Y'){
+        if(decision=='Y'){
             inventory.pop_back();
         }
-        else if(decision='N'){
+        else if(decision=='N'){
 
         }
         else{
@@ -55,7 +57,19 @@ using namespace std;
     else{
         cout<<"Your inventory is empty!"<<endl;
     }
+    case 3:
+    if(inventory.size()>0){
+        int i;
+        for(int i;i<inventory.size();i++){
+            cout<<i+1<<" "<<inventory[i]<<endl;
+        }
+    }
+    else{
+        cout<<"Your inventory is empty!"<<endl;
+    }
         default:
             break;
         }
+    }
+    return 0;
     }
