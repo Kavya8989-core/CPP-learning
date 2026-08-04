@@ -64,9 +64,21 @@ using namespace std;
                 cout<<i+1<<" "<<inventory[i]<<endl;
         }
     }
-    else{
-        cout<<"Your inventory is empty!"<<endl;
+        else{
+            cout<<"Your inventory is empty!"<<endl;
     }
+        break;
+        case 4:
+        if(inventory.size()>0){
+            inventory.clear();
+            cout<<"Your inventory is cleared!"<<endl;
+        }
+        else{
+            cout<<"Your inventory is empty!"<<endl;
+        }
+        break;
+        case 5:
+        cout<<"You have been exited from the inventory!"<<endl;
     break;
         default:
         cout<<"Please enter a valid choice!"<<endl;
